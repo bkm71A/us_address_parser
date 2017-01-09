@@ -77,8 +77,8 @@ public class UsAddressParserTest {
             new ParsedUsAddress("1567", "", "TWIN LAKES", "", "", "", "", "ROGERS", "", "72756", null),
             new ParsedUsAddress("45", "", "LAKES", "", "", "", "", "BETHLEHEM VILLAGE", "", "06751", null),
             new ParsedUsAddress("216", "", "CRESCENT", "", "", "", "", "CHICOPEE", "", "01013", null),
-            new ParsedUsAddress("1310", "", "CRAFTON", "BLVD", "", "", "", "PITTSBURGH", "", "15205", null)/*
-            , new ParsedUsAddress("200", "", "C", "", "", "", "", "WASHINGTON", "", "20204", null) */
+            new ParsedUsAddress("1310", "", "CRAFTON", "BLVD", "", "", "", "PITTSBURGH", "", "15205", null),
+            new ParsedUsAddress("200", "", "C", "ST", "SW", "", "", "WASHINGTON", "", "20204", null)
     };
 
     private static final UnparsedAddress RAW_ADDRESS[] = { new UnparsedAddress("13101 James E Casey Ave", "Englewood", "80112"),
@@ -116,14 +116,14 @@ public class UsAddressParserTest {
             // uncompleted/no street type/ 'lake(s)'
             new UnparsedAddress("321 W Lake", "Elmhurst", "60126"), new UnparsedAddress("1567 Twin Lakes", "Rogers", "72756"),
             new UnparsedAddress("45 Lakes", "Bethlehem Village", "06751"), new UnparsedAddress("216 Crescent", "Chicopee", "01013"),
-            new UnparsedAddress("1310 Crafton Bul", "Pittsburgh", "15205")/*, 
-            new UnparsedAddress("200 C ST SW", "WASHINGTON", "20204") */
+            new UnparsedAddress("1310 Crafton Bul", "Pittsburgh", "15205"), 
+            new UnparsedAddress("200 C ST SW", "WASHINGTON", "20204") /*200 C Street South-West*/
     };
 
     @Test
     public void testParserWorks() {
         UsAddressParser parser = new UsAddressParser();
-        for (int j = RAW_ADDRESS.length; j < RAW_ADDRESS.length; j++) {
+        for (int j = 0; j < RAW_ADDRESS.length; j++) {
             Verify.objectsAreEqual(PARSED_ADDRESS[j], parser.parse(RAW_ADDRESS[j]));
         }
     }
