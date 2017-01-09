@@ -1,12 +1,8 @@
 package com.skovalenko.geocoder.address_parser.us;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import com.skovalenko.geocoder.address_parser.us.AddressToken.HintTypes;
 
 public class ParserUtilities {
-    protected final static Log log = LogFactory.getLog(ParserUtilities.class);
 
     private static final char NOISE_CHARS[] = { '~', '!', '@', '$', '%', '^', '&', '*', '_', '+', '=', '|', '<', '>', '?', '/', '-', '.', '(', ')', '{', '}',
             '[', ']', '|', '\'', '"', ',' }; // '#'
@@ -80,26 +76,21 @@ public class ParserUtilities {
 
     public static int findFirstHintPosition(AddressToken[] addressTokens, HintTypes hint) {
         for (int x = 0; x < addressTokens.length; x++) {
-            if (addressTokens[x].getHint() == hint) {
-                return x;
-            }
+            if (addressTokens[x].getHint() == hint) return x;
         }
         return -1;
     }
 
     public static int findLastHintPosition(AddressToken[] addressTokens, HintTypes hint) {
         for (int x = addressTokens.length - 1; x > -1; x--) {
-            if (addressTokens[x].getHint() == hint) {
-                return x;
-            }
+            if (addressTokens[x].getHint() == hint) return x;
         }
         return -1;
     }
 
     public static String getValueFromTokens(AddressToken[] addressTokens, HintTypes hint) {
         for (int x = 0; x < addressTokens.length; x++) {
-            if (addressTokens[x].getHint() == hint)
-                return addressTokens[x].getToken();
+            if (addressTokens[x].getHint() == hint) return addressTokens[x].getToken();
         }
         return "";
     }

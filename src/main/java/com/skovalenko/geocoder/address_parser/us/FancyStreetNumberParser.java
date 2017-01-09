@@ -40,7 +40,7 @@ public class FancyStreetNumberParser {
 	 * @return corrected address with numeric street number (first number is selected)
 	 */
     private static String handleFancyStreetNumber(String addressLine, String pattern) {
-        if (addressLine.matches(pattern + ".+") && !isAlphabeticStreetNames(addressLine, pattern)) {
+        if (addressLine.matches(pattern + ".+") && !isAlphabeticStreetName(addressLine, pattern)) {
             String rightAddr[] = addressLine.split(pattern, 2);
             if (rightAddr.length == 0) return addressLine;
             String rightPart = rightAddr[rightAddr.length - 1];
@@ -53,7 +53,7 @@ public class FancyStreetNumberParser {
     /**
      * This method finds alphabetic street names like '200 C ST SW' (200 C Street South-West)
      */
-    private static boolean isAlphabeticStreetNames(String addressLine, String pattern) {
+    private static boolean isAlphabeticStreetName(String addressLine, String pattern) {
         return STREET_NUMBER_LETR.equals(pattern) && UsAddressParserDataStrings.STREET_TYPE.containsKey(getFirstTokenAfterMatch(addressLine, pattern));
     }
 
